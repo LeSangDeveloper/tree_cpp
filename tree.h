@@ -4,17 +4,31 @@
 #include<list>
 
 template<typename E>
+struct Node<E> {
+    E elem;
+    Position parent;
+    PositionList children;
+}
+
+template<typename E>
 class Position<E> {
-    E& operator*();
-    Position parent() const;
-    PositionList children() const;
-    bool isRoot() const;
-    bool isExternal() const;
+    private:
+        Node* v;
+    public:
+        E& operator*();
+        Position parent() const;
+        PositionList children() const;
+        bool isRoot() const;
+        bool isExternal() const;
 };
-typedef std::list<Position> PositionList;
+template<typename E>
+typedef std::list<Position<E>> PositionList;
 
 template<typename E>
 class Tree<E> {
+    private:
+        Position root;
+        PositionList positions;
     public:
         class Position;
         class PositionList;

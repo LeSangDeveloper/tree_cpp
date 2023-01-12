@@ -4,46 +4,46 @@
 using namespace std;
 
 template<typename E>
-E& Tree<E>::Position<E>::operator*() {
+E& Position<E>::operator*() {
     return v->elem;
 }
 
 template<typename E>
-Tree<E>::Position Tree<E>::Position<E>::parent() const {
+Position<E> Position<E>::parent() const {
     return v->parent;
 }
 
 template<typename E>
-Tree<E>::PositionList Tree<E>::Position<E>::children() const {
+list<Position<E> > Position<E>::children() const {
     return v->children;
 }
 
 template<typename E>
-bool Tree<E>::Position<E>::isRoot() {
+bool Position<E>::isRoot() const {
     return v->parent == NULL;
 }
 
 template<typename E>
-bool Tree<E>::Position<E>::isExternal() {
+bool Position<E>::isExternal() const {
     return v->children == NULL;
 }
 
 template<typename E> 
-int Tree<E>::size() {
+int Tree<E>::size() const {
     return 1;
 }
 
 template<typename E> 
-bool Tree<E>::empty() {
+bool Tree<E>::empty() const {
     return true;
 }
 
 template<typename E> 
-Position Tree<E>::root() {
-    return root;
+Position<E> Tree<E>::root() const {
+    return rootNode;
 }
 
 template<typename E> 
-PositionList Tree<E>::positions() {
-    return positions;
+list<Position<E> > Tree<E>::positions() const {
+    return positionNodes;
 }

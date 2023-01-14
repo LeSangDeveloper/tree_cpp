@@ -5,27 +5,27 @@ using namespace std;
 
 template<typename E>
 E& Position<E>::operator*() {
-    return v->elem;
+    return elem;
 }
 
 template<typename E>
 Position<E> Position<E>::parent() const {
-    return v->parent;
+    return *parentPos;
 }
 
 template<typename E>
 list<Position<E> > Position<E>::children() const {
-    return v->children;
+    return childrenPos;
 }
 
 template<typename E>
 bool Position<E>::isRoot() const {
-    return v->parent == NULL;
+    return parentPos == NULL;
 }
 
 template<typename E>
 bool Position<E>::isExternal() const {
-    return v->children == NULL;
+    return childrenPos.empty();
 }
 
 template<typename E> 
@@ -47,3 +47,6 @@ template<typename E>
 list<Position<E> > Tree<E>::positions() const {
     return positionNodes;
 }
+
+template class Position<int>;
+template class Tree<int>;

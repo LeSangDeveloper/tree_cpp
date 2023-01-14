@@ -4,8 +4,12 @@
 
 using namespace std;
 
-int main() {
-    Node<int> node1;
-    node1.elem = 10;
+int main() {    
+    Position<int> position1;
+    *position1 = 1;
+    cout << position1.isRoot();
+    cout << *position1;
+
+
     return 0;
 }

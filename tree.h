@@ -4,20 +4,14 @@
 #include<list>
 
 template<typename E>
-class Position;
-
-template<typename E>
-struct Node {
-    E elem;
-    Position<E> parent;
-    std::list<Position<E> > children;
-};
-
-template<typename E>
 class Position {
     private:
-        Node<E>* v;
+        E elem;
+        Position<E>* parentPos;
+        std::list<Position<E> > childrenPos;
     public:
+        Position() 
+        :parentPos(NULL) {}
         E& operator*();
         Position<E> parent() const;
         std::list<Position<E> > children() const;

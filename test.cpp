@@ -122,12 +122,11 @@ int main() {
     position0->addChild(*position13);
     tree0->addPosition(*position13);
 
-    // list<Position<string> > children = position0->children();
-    list<Position<string> > children = tree0->positions();
+    list<Position<string> > nodes = tree0->positions();
 
-    for (Position<string> child : children) {
-        cout << *child << endl;
-        cout << depth(child) << endl;
+    for (Position<string> node : nodes) {
+        cout << *node << endl;
+        cout << depth(node) << endl;
     }
 
 

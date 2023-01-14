@@ -26,6 +26,7 @@ Position<E> Position<E>::parent() const {
 
 template<typename E>
 list<Position<E> > Position<E>::children() const {
+    // TODO modify later
     return childrenPos;
 }
 

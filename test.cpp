@@ -50,6 +50,16 @@ void preOrderPrint(const Position<E>& p) {
     }
 }
 
+template<typename E>
+void postOrderPrint(const Position<E>& p) {
+    list<Position<E> > children = p.children();
+    for (typename list<Position<E> >::iterator q = children.begin(); q != children.end(); ++q) {
+        postOrderPrint(*q);
+        cout << " ";
+    }
+    cout << *p;
+}
+
 int main() {    
     Position<string> *position0 = new Position<string>;
     *(*position0) = "Electronics R\' US";
@@ -166,6 +176,8 @@ int main() {
 
     Position<string> root = tree0->root();
     preOrderPrint(root);
+    cout << endl;
+    postOrderPrint(root);
     cout << endl;
     cout << "height of tree: " << height2(root) << endl; 
 

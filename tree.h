@@ -33,6 +33,7 @@ class Tree {
         : rootNode(root) {}
         Tree(Position<E> root)
         : rootNode(&root) {}
+        void setRoot(Position<E>* root);
         void addPosition(Position<E> position);
         int size() const;
         bool empty() const;

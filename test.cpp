@@ -11,6 +11,45 @@ int depth(Position<E> position) {
     return 1 + depth(position.parent());
 }
 
+template<typename E>
+int height1(const Tree<E>& T) {
+    int h = 0;
+    list<Position<E> > nodes = T.positions();
+    for (typename list<Position<E> >::iterator p = nodes.begin(); p != nodes.end(); ++p) {
+        if (p->isExternal()) {
+            int temp = depth(*(p));
+            h = temp > h ? temp : h; 
+        }
+    }
+    return h;
+}
+
+template<typename E>
+int height2(const Position<E>& p) {
+    if (p.isExternal()) return 0;
+    int h = 0;
+    list<Position<E> > nodes = p.children();
+    for (typename list<Position<E> >::iterator q = nodes.begin(); q != nodes.end(); ++q) {
+        int temp = height2(*q);
+        h = temp > h ? temp : h;
+    }
+    return  1 + h;
+}
+
+template<typename E>
+void preOrderPrint(const Position<E>& p) {
+    cout << *p;
+    if (!p.isExternal()) {
+        list<Position<E> > children = p.children();
+        cout << "( ";
+        for (typename list<Position<E> >::iterator q = children.begin(); q != children.end(); ++q) {
+            if (q != children.begin()) cout << " ";
+            preOrderPrint(*q);
+        } 
+        cout << " )";
+    }
+}
+
 int main() {    
     Position<string> *position0 = new Position<string>;
     *(*position0) = "Electronics R\' US";
@@ -121,14 +160,14 @@ int main() {
     position13->setParent(position0);
     position0->addChild(*position13);
     tree0->addPosition(*position13);
+    tree0->setRoot(position0);
 
     list<Position<string> > nodes = tree0->positions();
 
-    for (Position<string> node : nodes) {
-        cout << *node << endl;
-        cout << depth(node) << endl;
-    }
-
+    Position<string> root = tree0->root();
+    preOrderPrint(root);
+    cout << endl;
+    cout << "height of tree: " << height2(root) << endl; 
 
     return 0;
 }

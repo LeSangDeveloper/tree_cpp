@@ -66,6 +66,11 @@ void Tree<E>::addPosition(Position<E> position) {
     positionNodes.push_back(position);
 }
 
+template<typename E> 
+void Tree<E>::setRoot(Position<E>* root) {
+    rootNode = root;
+}
+
 template class Position<int>;
 template class Tree<int>;
 
